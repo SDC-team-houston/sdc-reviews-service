@@ -11,7 +11,7 @@
     "type": "git",
     "url": "git+https://github.com/SDC-team-houston/sdc-reviews-service.git"
   },
-  "author": "",
+  "author": "Christian Peterson",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/SDC-team-houston/sdc-reviews-service/issues"
