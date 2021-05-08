@@ -46,11 +46,8 @@ const create = (body) => {
   });
 };
 
-const addOneToHelpfulness = (reviewId) => {
+const updateOne = (reviewId, conditions, update) => {
   return new Promise((resolve, reject) => {
-    const conditions = { id: reviewId };
-    const update = { $inc: { helpfulness: 1 } };
-
     Review.updateOne(conditions, update).exec((err, review) => {
       if (err) {
         reject(err);
@@ -61,8 +58,24 @@ const addOneToHelpfulness = (reviewId) => {
   });
 };
 
+const addOneToHelpfulness = async (reviewId) => {
+  const conditions = { id: reviewId };
+  const update = { $inc: { helpfulness: 1 } };
+
+  return await updateOne(reviewId, conditions, update);
+};
+
+const setReportedToTrue = async (reviewId) => {
+  const conditions = { id: reviewId };
+  const update = { reported: true };
+
+  return await updateOne(reviewId, conditions, update);
+};
+
 module.exports = {
   read,
   create,
+  updateOne,
   addOneToHelpfulness,
+  setReportedToTrue,
 };

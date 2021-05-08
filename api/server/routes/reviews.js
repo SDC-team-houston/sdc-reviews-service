@@ -39,8 +39,15 @@ router.put('/:review_id/helpful', async (req, res) => {
   }
 });
 
-router.put('/:review_id/report', (req, res) => {
-  res.send('Getting /reviews/:review_id/report');
+router.put('/:review_id/report', async (req, res) => {
+  try {
+    const reviewId = req.params.review_id;
+    const queryResult = await Reviews.setReportedToTrue(reviewId);
+    res.send(queryResult);
+  } catch (err) {
+    console.error(err);
+    res.end();
+  }
 });
 
 module.exports = router;
