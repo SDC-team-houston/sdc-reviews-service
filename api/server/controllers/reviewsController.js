@@ -1,4 +1,4 @@
-const Review = require('../models/ReviewModel');
+const Review = require('../models/reviewsModel');
 
 const read = ({
   page = 1,
@@ -9,20 +9,22 @@ const read = ({
   return new Promise((resolve, reject) => {
     const sortOptions = sort === 'helpful' ? { helpfulness: -1 } : { date: -1 };
     const findOptions = productId ? { product_id: Number(productId) } : {};
+    const countOptions = Number(count);
 
     Review.find(findOptions)
-      .limit(Number(count))
+      .limit(countOptions)
       .sort(sortOptions)
       .exec((err, reviews) => {
         if (err) {
           reject(err);
+        } else {
+          resolve({
+            product: productId,
+            page,
+            count,
+            results: reviews,
+          });
         }
-        resolve({
-          product: productId,
-          page,
-          count,
-          results: reviews,
-        });
       });
   });
 };
@@ -37,8 +39,24 @@ const create = (body) => {
     review.save((err, newReview) => {
       if (err) {
         reject(err);
+      } else {
+        resolve(newReview);
       }
-      resolve(newReview);
+    });
+  });
+};
+
+const addOneToHelpfulness = (reviewId) => {
+  return new Promise((resolve, reject) => {
+    const conditions = { id: reviewId };
+    const update = { $inc: { helpfulness: 1 } };
+
+    Review.updateOne(conditions, update).exec((err, review) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(review);
+      }
     });
   });
 };
@@ -46,4 +64,5 @@ const create = (body) => {
 module.exports = {
   read,
   create,
+  addOneToHelpfulness,
 };
