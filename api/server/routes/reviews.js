@@ -35,7 +35,7 @@ router.put('/:review_id/helpful', async (req, res) => {
     res.send(queryResult);
   } catch (err) {
     console.error(err);
-    res.end;
+    res.end();
   }
 });
 
