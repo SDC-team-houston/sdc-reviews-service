@@ -1,17 +1,13 @@
-// const mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
-// mongoose.connect('mongodb://mongo/myDB', {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-// });
-// // .then(() => {
-// //   const Cat = mongoose.model('Cat', { name: String });
+const mongoDB = 'mongodb://mongo/Test';
+mongoose.connect(mongoDB, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
-// //   const kitty = new Cat({ name: 'Zildjian' });
-// //   kitty.save().then(() => console.log('meow'));
-// // })
-// // .catch((err) => {
-// //   console.error(err);
-// // });
+const db = mongoose.connection;
 
-// module.exports
+db.on('error', console.error.bind(console, 'connection error:'));
+
+module.exports = db;
