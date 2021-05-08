@@ -6,6 +6,7 @@ services:
       - '27017'
     volumes:
       - ./mongo/data:/data/db
+      - ./mongo/reviews_data
   api:
     build:
       context: ./api
@@ -19,3 +20,8 @@ services:
     image: mongo-express
     ports:
       - 8081:8081
+  # scripts:
+  #   build:
+  #     context: ./aggregate
+  #   volumes:
+  #     - ./aggregate

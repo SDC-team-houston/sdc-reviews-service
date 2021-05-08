@@ -9,6 +9,8 @@
   "author": "Christian Peterson",
   "license": "ISC",
   "dependencies": {
-    "csv-parser": "^3.0.0"
+    "csv-parser": "^3.0.0",
+    "csv-writer": "^1.6.0",
+    "mongoose": "^5.12.7"
   }
 }
