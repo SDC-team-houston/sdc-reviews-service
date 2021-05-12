@@ -4,24 +4,8 @@ services:
     image: mongo:3
     expose:
       - '27017'
+    ports:
+      - 27017:27017
     volumes:
       - ./mongo/data:/data/db
       - ./mongo/reviews_data
-  api:
-    build:
-      context: ./api
-      dockerfile: Dockerfile.dev
-    volumes:
-      - /app/node_modules
-      - ./api/:/app
-    ports:
-      - '3000:3000'
-  mongo-express:
-    image: mongo-express
-    ports:
-      - 8081:8081
-  # scripts:
-  #   build:
-  #     context: ./aggregate
-  #   volumes:
-  #     - ./aggregate

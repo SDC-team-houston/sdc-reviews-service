@@ -1,0 +1,15 @@
+version: '3'
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /app/node_modules
+      - ./:/app
+    ports:
+      - '3000:3000'
+#   mongo-express:
+#     image: mongo-express
+#     ports:
+#       - 8081:8081
