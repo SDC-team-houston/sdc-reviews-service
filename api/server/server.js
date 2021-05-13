@@ -13,8 +13,8 @@ app.use(express.json());
 
 app.use('/reviews', reviews);
 
-app.get('/loaderio-99c02dac162d5c22343b94833afbd2cc.txt', (req, res) => {
-  res.sendFile('loaderio-99c02dac162d5c22343b94833afbd2cc.txt', {
+app.get('/loaderio-a1f29fdf0fc47fb46f03e519261199e6.txt', (req, res) => {
+  res.sendFile('loaderio-a1f29fdf0fc47fb46f03e519261199e6.txt', {
     root: path.join(__dirname, 'assets'),
   });
 });
