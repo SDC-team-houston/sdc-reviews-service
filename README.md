@@ -9,7 +9,7 @@
      <strong>Author »</strong>
     <br />
     <br />
-    <a href="https://github.com/itsme-sunil">Christian Peterson</a>
+    <a href="https://github.com/ChrisRPeterson">Christian Peterson</a>
      </h3>
   </p>
 </p>
