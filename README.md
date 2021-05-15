@@ -43,7 +43,6 @@
       <li><a href="#repo">Repo</a></li>
       <li><a href="#install">Install</a></li>
       <li><a href="#start-scripts">Start Scripts</a></li>
-      <li><a href="#github-api-token">Github API token</a></li>
      </ul>
     </li>
   </ol>
@@ -78,7 +77,6 @@ The final product, when tested with <a href="https://loader.io">loader.io</a> wi
       <th>Tools & Technologies</th>
       <td>
         <img alt="Express.js" src="https://img.shields.io/badge/express.js-%23404d59.svg?&style=for-the-badge"/>
-        <img alt="Postgres" src ="https://img.shields.io/badge/postgres-%23316192.svg?&style=for-the-badge&logo=postgresql&logoColor=white"/>
         <img alt="MongoDB" src ="https://img.shields.io/badge/MongoDB-%234ea94b.svg?&style=for-the-badge&logo=mongodb&logoColor=white"/>
       </td>
     </tr>
@@ -114,40 +112,71 @@ The final product, when tested with <a href="https://loader.io">loader.io</a> wi
 ## System Design
 **Features:**
 
-  * *Search Bar*: searches on change for products by product name or category - clicking the search bar renders a drop-down list of products to choose from
-
 ![](client/data/gifs/header.gif)
 
 
 ## Database and ETL
 **Features:**
 
-  * *Product Information*: dynamically renders information such as product rating, category, name, and price
-  * *Style Selector*: presents the user with all styles and has the ability to toggle between them
-  * *Add to Cart*: includes a size selector, capable of handling an out of stock size, button will add the currently selected item to the cart
-  * *Image Gallery*: displays photos specific to the currently selected style, and user can toggle an extended view on main image
-
 ![](./client/data/gifs/overview.gif)
 
 
 ## API Server
 
-** write out list of different routes (and query strings to accompany them)
-* (Morgan)
+### List Reviews
+
+Returns a list of reviews for a particular product. This list does not include any reported reviews.
+
+`GET /reviews/`
+
+Query Parameters
+<table>
+<thead>
+  <tr>
+    <th>Parameter</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>page</td>
+    <td>integer</td>
+    <td>Selects the page of results to return. Default 1.</td>
+  </tr>
+  <tr>
+    <td>count</td>
+    <td>integer</td>
+    <td>Specifies how many results per page to return. Default 5.</td>
+  </tr>
+  <tr>
+    <td>sort</td>
+    <td>text</td>
+    <td>Changes the sort order of reviews to be based on "newest" or "helpful".</td>
+  </tr>
+  <tr>
+    <td>product_id</td>
+    <td>integer</td>
+    <td>Specifies the product for which to retrieve reviews.</td>
+  </tr>
+</tbody>
+</table>
 
   ![](./client/data/gifs/related.gif)
 
 
 ## Optimization
 
-** indexing, (denormalization)
+The documents of the database are all denormalized as is reasonable to require as few queries as possible (usually one) to send a response to the client. This increases response time and reduces the amount of computation required by the server. Denormalizing data did not increase space required by the database, as all of the denormalized fields are only relevant to the reviews they are nested within and are never duplicated. 
+
+Indexes are added to key fields such as product_id and review_id to allow the smallest time complexity possible with mongoDB on every read query the server is required to execute. The trade off is a marginal increase to write times, the client is expecting to run read queries much more often than write queries so this is an easily worthwhile compromise. For a standard query of a random product_id we reduced response times from over 10000 ms to under 10 ms. A 1000x speed improvement.
 
  ![](client/data/gifs/questions.gif)
 
 
 ## Deployment
 
-** AWS EC2 Docker
+Deployment was done using docker and two AWS EC2 instances. 
 
  ![](./client/data/gifs/reviews.gif)
 
