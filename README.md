@@ -1,4 +1,3 @@
-# qa-api-service
 <br />
 <p align="center">
   <h1 align="center">System Design Capstone</h1>
