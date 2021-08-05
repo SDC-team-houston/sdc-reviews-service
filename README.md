@@ -24,8 +24,6 @@
         <li><a href="#stack">Built With</a></li>
       </ul>
     </li>
-    <li><a href="#system-design">System Design</a></li>
-    <li><a href="#database-and-etl">Database and ETL</a></li>
     <li><a href="#api-server">API Server</a></li>
     <li><a href="#optimization">Optimization</a></li>
     <li><a href="#deployment">Deployment</a></li>
@@ -58,8 +56,6 @@ I was tasked with re-engineering the backend of the "Questions and Answers" serv
   * Stress test all API routes, checking for RPS (requests per second), latency, and error rate
 
 The final product, when tested with <a href="https://loader.io">loader.io</a> with a maximum of 667 users per second, registered an average response time of 5 ms with a 0.0% error rate.
-
-![](Stress test screenshot)
 
 
 # Stack
@@ -107,18 +103,6 @@ The final product, when tested with <a href="https://loader.io">loader.io</a> wi
     </tr>
   </tbody>
 </table>
-
-
-## System Design
-**Features:**
-
-![](client/data/gifs/header.gif)
-
-
-## Database and ETL
-**Features:**
-
-![](./client/data/gifs/overview.gif)
 
 
 ## API Server
@@ -180,11 +164,6 @@ Deployment was done using docker and two AWS EC2 instances.
 
  ![](./client/data/gifs/reviews.gif)
 
-
-## Stress Testing
-**loader.io, numbers and screenshots
-
-
 # Workflow
 Our team used Agile workflow for this project.
 
@@ -193,23 +172,3 @@ A Trello board was used to create and track tickets. We held daily standup meeti
 
 ## Version Control
 We utilized Git Feature Branch workflow. All pull requests in Github were reviewed by another team member before being merged into the main branch.
-
-# Development
-
-## Repo
-`git clone https://github.com/ht-atx55-team-timbre/project-catwalk.git`
-
-## Install
-`npm install`
-
-## Start Scripts
-```
-npm start
-```
-
-## Install Postgres
-<a href="https://brew.sh/">Install Homebrew</a>
-
-`brew install postgres`
-
-<a href="https://www.postgresql.org/download/">Postgres Documentation</a>
